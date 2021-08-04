@@ -1,23 +1,26 @@
 package main
 
 import (
+	"bufio"
 	"crashcourse/doctor"
 	"fmt"
+	"os"
+	"strings"
 )
 
-// func main() {
-// 	// var saying string
-// 	// saying = "Saluton mondo!!"
-// 	saying := "Saluton mondo!!!"
-// 	saySomething(saying)
-// }
-
-// func saySomething(whatToSay string) {
-// 	fmt.Println(whatToSay)
-// }
-
 func main() {
-	var whatToSay string
-	whatToSay = doctor.Intro()
+	reader := bufio.NewReader(os.Stdin)
+	whatToSay := doctor.Intro()
 	fmt.Println(whatToSay)
+
+	for {
+		fmt.Print("-> ")
+		userInput, _ := reader.ReadString('\n')
+		userInput = strings.TrimSpace(userInput)
+		if userInput == "quit" {
+			break
+		} else {
+			fmt.Println(doctor.Response(userInput))
+		}
+	}
 }
