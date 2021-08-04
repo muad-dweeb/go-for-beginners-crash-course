@@ -1,8 +1,8 @@
 package main
 
 import (
+	"crashcourse/doctor"
 	"fmt"
-	"myapp/doctor"
 )
 
 // func main() {

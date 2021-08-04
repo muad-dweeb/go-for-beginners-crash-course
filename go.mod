@@ -1,3 +1,3 @@
-module myapp
+module crashcourse
 
 go 1.16
