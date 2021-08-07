@@ -2,9 +2,9 @@ package main
 
 import (
 	"bufio"
-	"crashcourse/doctor"
 	"fmt"
 	"os"
+	"sectionOne/doctor"
 	"strings"
 )
 
