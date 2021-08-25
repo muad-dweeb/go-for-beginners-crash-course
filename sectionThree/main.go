@@ -60,16 +60,4 @@ func main() {
 
 	fmt.Println("Program exiting...")
 
-	// reader := bufio.NewReader(os.Stdin)
-
-	// for {
-	// 	fmt.Print("-> ")
-	// 	userInput, _ := reader.ReadString('\n')
-	// 	userInput = strings.TrimSpace(userInput)
-	// 	if userInput == "quit" {
-	// 		break
-	// 	} else {
-	// 		fmt.Println(userInput)
-	// 	}
-	// }
 }
