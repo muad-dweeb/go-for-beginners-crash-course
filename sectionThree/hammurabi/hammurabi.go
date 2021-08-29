@@ -1,7 +1,18 @@
 package hammurabi
 
-import "fmt"
+import (
+	"fmt"
+	"sectionThree/hammurabi/game"
+)
 
 func Hammurabi() {
-	fmt.Println("Not implemented")
+	playAgain := true
+
+	for playAgain {
+		game.Play()
+		playAgain = game.GetYesOrNo("Would you like to play again (y/n)?")
+	}
+
+	fmt.Println("")
+	fmt.Println("Goodbye.")
 }
