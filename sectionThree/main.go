@@ -9,7 +9,41 @@ import (
 	"github.com/eiannone/keyboard"
 )
 
-func main() {
+func menu_select(input_map map[int]string) int {
+	var i int
+	fmt.Println("MENU")
+	fmt.Println("----")
+
+	// Extract and sort the map keys
+	keySlice := make([]int, 0, len(input_map))
+	for num := range input_map {
+		keySlice = append(keySlice, num)
+	}
+	sort.Ints(keySlice)
+
+	// Print the menu
+	for _, item := range keySlice {
+		fmt.Println(item, "-", input_map[item])
+	}
+	fmt.Println("Q - Quit the program")
+
+	char, key, err := keyboard.GetSingleKey()
+	if err != nil {
+		log.Fatal((err))
+	}
+
+	if key == keyboard.KeyEsc || char == 'q' || char == 'Q' {
+		i = 0
+		fmt.Println("Program exiting...")
+		return i
+	} else {
+		i, _ := strconv.Atoi(string(char))
+		fmt.Printf("\nYou chose %s\n", input_map[i])
+		return i
+	}
+}
+
+func coffee() {
 	err := keyboard.Open()
 	if err != nil {
 		log.Fatal(err)
@@ -28,36 +62,25 @@ func main() {
 		6: "Flat White",
 	}
 
-	fmt.Println("MENU")
-	fmt.Println("----")
+	menu_select(menu)
+}
 
-	// Extract and sort the map keys
-	keySlice := make([]int, 0, len(menu))
-	for num := range menu {
-		keySlice = append(keySlice, num)
+func hammurabi() {
+	fmt.Println("Not implemented")
+}
+
+func main() {
+	options := map[int]string{
+		1: "Coffee",
+		2: "Hammurabi",
 	}
-	sort.Ints(keySlice)
-
-	// Print the menu
-	for _, item := range keySlice {
-		fmt.Println(item, "-", menu[item])
+	choice := menu_select(options)
+	fmt.Print("\n\n\n")
+	if choice == 1 {
+		coffee()
+	} else if choice == 2 {
+		hammurabi()
+	} else if choice != 0 {
+		fmt.Printf("Invalid selection: %d\n", choice)
 	}
-	fmt.Println("Q - Quit the program")
-
-	for {
-		char, key, err := keyboard.GetSingleKey()
-		if err != nil {
-			log.Fatal((err))
-		}
-
-		if key == keyboard.KeyEsc || char == 'q' || char == 'Q' {
-			break
-		}
-
-		i, _ := strconv.Atoi(string(char))
-		fmt.Println(fmt.Sprintf("You chose %s", menu[i]))
-	}
-
-	fmt.Println("Program exiting...")
-
 }
